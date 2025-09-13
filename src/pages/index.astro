@@ -1,4 +1,5 @@
 ---
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/astro/components";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -11,15 +12,22 @@ import Layout from "../layouts/Layout.astro";
 			completar. ¡Solo para usuarios autenticados!
 		</p>
 
-		<div class="mt-12">
-			<button class="bg-blue-500 text-white px-4 py-2 rounded">
-				Iniciar sesión
-			</button>
-		</div>
+		<SignedOut>
+			<div class="mt-12">
+				<SignInButton mode="modal" class="bg-blue-500 text-white px-4 py-2 rounded">
+					Iniciar sesión
+				</SignInButton>
+			</div>
+		</SignedOut>
 
-		<p class="mt-12">
-			Si ya has iniciado sesión, entra a tu
-			<a class="underline text-sky-300" href="/retos">panel de retos</a>
-		</p>
+		<SignedIn>
+			<UserButton showName />
+			<p class="mt-12">
+				¡Ya has iniciado sesión! Entra a tu
+				<a class="underline text-sky-300" href="/retos"
+					>panel de retos</a
+				>
+			</p>
+		</SignedIn>
 	</main>
 </Layout>
